@@ -3,8 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
-
-	"github.com/dev-jpnobrega/api-rest/src/infrastructure/router"
+	"./infrastructure/router"
 )
 
 type server struct{}
