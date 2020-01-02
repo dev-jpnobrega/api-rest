@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
-	"./infrastructure/router"
+	"github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
 )
 
 type server struct{}
@@ -16,8 +16,8 @@ func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	s := &server{}
-
+	
 	http.Handle("/", s)
 
-	log.Fatal(http.ListenAndServe(":8080", router.BuildRouters()))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

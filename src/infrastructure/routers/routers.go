@@ -1,6 +1,8 @@
-package infrastructure/router
+package routers
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
@@ -10,7 +12,7 @@ func getPeople(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{"message": "hello world"}`))
 }
 
-func BuildRouters() {
+func BuildRouters() *mux.Router {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/v1/people", getPeople).Methods("GET")
