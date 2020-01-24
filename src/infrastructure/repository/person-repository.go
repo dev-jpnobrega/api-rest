@@ -10,7 +10,7 @@ type PersonRepository struct {
 	model entity.Person
 }
 
-func (p *PersonRepository) GetPeople(params command.GetPeopleParam) (error, []entity.Person) {
+func (p *PersonRepository) GetPeople(params command.GetPeopleParam2) (error, []entity.Person) {
 	fmt.Println("repository:", params)
 
 	return nil, []entity.Person{

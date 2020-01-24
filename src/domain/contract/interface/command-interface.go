@@ -6,5 +6,6 @@ import (
 
 // ICommand infc
 type ICommand interface {
+	ModelValidate(p interface{}, model interface{}) error
 	Execute(p value.DataInput) (error, value.DataResult)
 }

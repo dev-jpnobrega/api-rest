@@ -15,7 +15,7 @@
         "program": "${workspaceRoot}/src/main.go",
         "env": {},
         "args": [],
-        "showLog": true
+        "showLog": false
     }
   ]
 }

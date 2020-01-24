@@ -1,57 +1,41 @@
 package routers
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
+	"net/url"
+	"reflect"
 
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
-	value "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
 	"github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
+	handler "github.com/dev-jpnobrega/api-rest/src/infrastructure/http"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/schema"
 )
 
-func getPeople(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(`{"message": "hello world"}`))
-}
-
-func handle(w http.ResponseWriter, r *http.Request, result value.DataResult) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	//w.Write([]byte(result))
-
-	json.NewEncoder(w).Encode(result)
-}
-
 var decoder = schema.NewDecoder()
 
-var getPeopleParam struct {
-	name string `schema:"name"`
-	age  string `schema:"age"`
+// GetPeopleParam live
+type GetPeopleParam struct {
+	Name string
+	Age  int
 }
 
-func adpater(command interfaces.ICommand) func(w http.ResponseWriter, r *http.Request) {
+func fillStruct(data url.Values, result interface{}) {
+	t := reflect.ValueOf(result).Elem()
+	for k, v := range data {
+		val := t.FieldByName(k)
+
+		if !val.IsValid() {
+			panic(val.Type())
+		}
+
+		val.Set(reflect.ValueOf(v[0]))
+	}
+}
+
+func adapter(command interfaces.ICommand, h handler.IHandler) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var model value.DataInput
-
-		model.Args = getPeopleParam
-
-		keys := r.URL.Query()
-		err2 := decoder.Decode(&model.Args, keys)
-
-		fmt.Println("decode[GetPeopleParam][keys]", keys)
-		fmt.Println("decode[GetPeopleParam][pars]", model.Args)
-		fmt.Println("decode[err]", err2)
-
-		// model.Args = keys
-		err, p := command.Execute(model)
-
-		fmt.Println("adpater[result]", err, p)
-
-		handle(w, r, p)
+		h.Handle(w, r, command)
 	}
 }
 
@@ -59,7 +43,13 @@ func adpater(command interfaces.ICommand) func(w http.ResponseWriter, r *http.Re
 func BuildRouters() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
-	router.HandleFunc("/v1/people", adpater(factory.GetPeopleFactory())).Methods("GET")
+	router.HandleFunc(
+		"/v1/people",
+		adapter(
+			factory.GetPeopleFactory(),
+			handler.NewHandler(),
+		),
+	).Methods("GET")
 
 	return router
 }
