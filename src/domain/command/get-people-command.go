@@ -2,7 +2,6 @@ package domain
 
 import (
 	"fmt"
-
 	values "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
 	entity "github.com/dev-jpnobrega/api-rest/src/domain/entity"
 )
@@ -29,7 +28,11 @@ func (p *GetPeopleCommand) ModelValidate(params interface{}, model interface{}) 
 }
 
 // Execute command
-func (p *GetPeopleCommand) Execute(params values.DataInput) (error, values.DataResult) {
+func (p *GetPeopleCommand) Execute(input values.DataInput) (error, values.DataResult) {
+
+	context := input
+
+	fmt.Println("COMMAND", context)
 
 	//value, ok := params.Args.(GetPeopleParam)
 	var dataResult values.DataResult
