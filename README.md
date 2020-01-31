@@ -8,8 +8,17 @@
 
 - Package Domain
 
-  > The domain package is responsible by bussiness rules. Domain desacople logic bussiness rules of the infrastructure
+  > The domain package is responsible by bussiness rules. The Domain decouple logic bussiness rules of the infrastructure
+
+  **Code structure**
+
+  |   Folder   |        Responsibility          | 
+  |------------|--------------------------------|
+  |  /command  |                                |
+  |  /entity   |                                |
+  |  /contract |                                |
+  |  /service  |                                |
     
 - Package Infrastructure
 
-  > The infrastructure
+  > The infrastructure package stores
