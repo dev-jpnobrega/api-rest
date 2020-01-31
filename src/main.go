@@ -1,22 +1,18 @@
 package main
 
 import (
-	"context"
 	"github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
-	"log"
-	"net/http"
+	mid "github.com/labstack/echo/v4/middleware"
+	echo "github.com/labstack/echo/v4"
 )
 
-func AddContext(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Println(r.Method, "-", r.RequestURI)
-		ctx := context.WithValue(r.Context(), "Username", "")
-		next.ServeHTTP(w, r.WithContext(ctx))
-	})
-}
-
 func main() {
-	server := http.NewServeMux()
+	server := echo.New()
 
-	log.Fatal(http.ListenAndServe(":8080", routers.BuildRouters(server)))
+	server.Use(mid.Logger())
+	server.Use(mid.Recover())
+
+	routers.BuildRouters(server)
+
+	server.Logger.Fatal(server.Start(":8080"))
 }

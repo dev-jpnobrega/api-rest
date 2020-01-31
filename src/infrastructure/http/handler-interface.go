@@ -2,10 +2,10 @@ package infrastructure
 
 import (
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
-	"net/http"
+	echo "github.com/labstack/echo/v4"
 )
 
 // IHandler ...
 type IHandler interface {
-	Handle(w http.ResponseWriter, r *http.Request, c interfaces.ICommand)
+	Handle(context echo.Context, command interfaces.ICommand) error
 }

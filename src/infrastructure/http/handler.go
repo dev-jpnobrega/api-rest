@@ -1,10 +1,10 @@
 package infrastructure
 
 import (
-	"encoding/json"
 	"fmt"
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
 	value "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
+	echo "github.com/labstack/echo/v4"
 	"net/http"
 )
 
@@ -12,24 +12,24 @@ import (
 type Handler struct{}
 
 // Handle ...
-func (h *Handler) Handle(w http.ResponseWriter, r *http.Request, c interfaces.ICommand) {
+func (h *Handler) Handle(context echo.Context, c interfaces.ICommand) error {
 	var model value.DataInput
-	model.Args = r.URL.Query()
-	model.Authorization = r.Header.Get("Authorization")
-	model.XAppToken = r.Header.Get("x-app-token")
-
-	ctx := r.Context()
+	model.Args = context.QueryParams()
+	//model.Authorization = r.Header.Get("Authorization")
+	//model.XAppToken = r.Header.Get("x-app-token")
 
 	err, rs := c.Execute(model)
 
-	fmt.Println("Handler[result]", err, rs, ctx)
+	fmt.Println("Handler[result]", err, rs)
 
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	json.NewEncoder(w).Encode(rs)
+	return context.JSON(http.StatusOK, rs)
 }
 
 // NewHandler ...
 func NewHandler() IHandler {
 	return &Handler{}
 }
+
+//w.WriteHeader(http.StatusOK)
+//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+//json.NewEncoder(w).Encode(rs)
