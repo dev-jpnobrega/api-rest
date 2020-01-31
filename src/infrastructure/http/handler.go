@@ -15,8 +15,8 @@ type Handler struct{}
 func (h *Handler) Handle(context echo.Context, c interfaces.ICommand) error {
 	var model value.DataInput
 	model.Args = context.QueryParams()
-	//model.Authorization = r.Header.Get("Authorization")
-	//model.XAppToken = r.Header.Get("x-app-token")
+	// model.Authorization = r.Header.Get("Authorization")
+	// model.XAppToken = r.Header.Get("x-app-token")
 
 	err, rs := c.Execute(model)
 
@@ -29,7 +29,3 @@ func (h *Handler) Handle(context echo.Context, c interfaces.ICommand) error {
 func NewHandler() IHandler {
 	return &Handler{}
 }
-
-//w.WriteHeader(http.StatusOK)
-//w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-//json.NewEncoder(w).Encode(rs)
