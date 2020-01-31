@@ -8,6 +8,8 @@
 
 - Package Domain
 
-  > Responsibility: The domain package is responsible by bussiness rules
+  > The domain package is responsible by bussiness rules. Domain desacople logic bussiness rules of the infrastructure
     
-  
+- Package Infrastructure
+
+  > The infrastructure
