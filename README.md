@@ -1,6 +1,7 @@
 <img src="go-readme.png" align="right" />
 
-### Example API REST go with ECHO Go web framework
+# Example API REST in GO
+> The implementation using [ECHO web framework](https://echo.labstack.com/)
 
 ---
 
