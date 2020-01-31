@@ -22,3 +22,12 @@
 - Package Infrastructure
 
   > The infrastructure package stores
+
+  **Code structure**
+
+  |   Folder     |        Responsibility          | 
+  |--------------|--------------------------------|
+  |  /factory    |                                |
+  |  /http       |                                |
+  |  /repository |                                |
+  |  /service    |                                |
