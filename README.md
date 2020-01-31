@@ -7,6 +7,7 @@
 ## Packages structure
 
 - Package Domain
+
   > Responsibility: The domain package is responsible by bussiness rules
     
   
