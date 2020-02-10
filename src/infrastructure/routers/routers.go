@@ -13,12 +13,26 @@ func adapter(command interfaces.ICommand, h handler.IHandler) func(c echo.Contex
 	}
 }
 
+func personGroupRouters(server *echo.Echo) {
+
+}
+
 // BuildRouters create router APP
 func BuildRouters(server *echo.Echo) {
+	// routeGroup := server.Group("/v1")
+
 	server.GET(
 		"/v1/people",
 		adapter(
 			factory.GetPeopleFactory(),
+			handler.NewHandler(),
+		),
+	)
+
+	server.POST(
+		"/v1/login",
+		adapter(
+			factory.UserLoginFactory(),
 			handler.NewHandler(),
 		),
 	)

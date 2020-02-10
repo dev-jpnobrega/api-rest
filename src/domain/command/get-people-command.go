@@ -2,6 +2,7 @@ package domain
 
 import (
 	"fmt"
+
 	values "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
 	entity "github.com/dev-jpnobrega/api-rest/src/domain/entity"
 )
@@ -22,8 +23,8 @@ type GetPeopleCommand struct {
 	Repository IPersonRepository
 }
 
-// ModelValidate command
-func (p *GetPeopleCommand) ModelValidate(params interface{}, model interface{}) error {
+// GetModelValidate command
+func (p *GetPeopleCommand) GetModelValidate() interface{} {
 	return nil
 }
 
@@ -36,9 +37,6 @@ func (p *GetPeopleCommand) Execute(input values.DataInput) (error, values.DataRe
 
 	//value, ok := params.Args.(GetPeopleParam)
 	var dataResult values.DataResult
-
-	p.params.age = "31"
-
 	err, data := p.Repository.GetPeople(p.params)
 
 	if err != nil {
