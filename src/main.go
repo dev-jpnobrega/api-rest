@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
+	"github.com/go-playground/validator"
 	echo "github.com/labstack/echo/v4"
 	mid "github.com/labstack/echo/v4/middleware"
 )
@@ -17,9 +18,18 @@ func (cb *CustomBinder) Bind(i interface{}, c echo.Context) (err error) {
 	return
 }
 
+type CustomValidator struct {
+	validator *validator.Validate
+}
+
+func (cv *CustomValidator) Validate(i interface{}) error {
+	return cv.validator.Struct(i)
+}
+
 func main() {
 	server := echo.New()
 	server.Binder = &CustomBinder{}
+	server.Validator = &CustomValidator{validator: validator.New()}
 
 	server.Use(mid.Logger())
 	server.Use(mid.Recover())

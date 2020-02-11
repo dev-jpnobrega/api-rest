@@ -16,8 +16,8 @@ func (l *LoginCommand) GetModelValidate() interface{} {
 	return &values.InputLogin{}
 }
 
-func (l *LoginCommand) Execute(input values.DataInput) (error, values.DataResult) {
-	var dataResult values.DataResult
+func (l *LoginCommand) Execute(input values.RequestData) (error, values.ResponseData) {
+	var dataResult values.ResponseData
 	args := input.Args.(*values.InputLogin)
 
 	fmt.Println("command[args]", args)

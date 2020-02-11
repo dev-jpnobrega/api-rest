@@ -7,5 +7,5 @@ import (
 // ICommand infc
 type ICommand interface {
 	GetModelValidate() interface{}
-	Execute(value.DataInput) (error, value.DataResult)
+	Execute(value.RequestData) (error, value.ResponseData)
 }

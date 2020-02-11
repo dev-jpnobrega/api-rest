@@ -1,13 +1,13 @@
 package domain
 
-// DataResult ...
-type DataResult struct {
+// ResponseData ...
+type ResponseData struct {
 	Data       interface{}
 	StatusCode int
 }
 
-// DataInput ...
-type DataInput struct {
+// RequestData ...
+type RequestData struct {
 	Authorization string
 	XAppToken     string
 	UserInfo      interface{}
@@ -17,5 +17,5 @@ type DataInput struct {
 // InputLogin - parameters login user
 type InputLogin struct {
 	Email string `json:"email" form:"email" query:"email" validate:"required,email"`
-	Pass  string `json:"pass" form:"pass" query:"pass"`
+	Pass  string `json:"pass" form:"pass" query:"pass" validate:"required"`
 }

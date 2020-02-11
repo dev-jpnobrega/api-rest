@@ -29,14 +29,14 @@ func (p *GetPeopleCommand) GetModelValidate() interface{} {
 }
 
 // Execute command
-func (p *GetPeopleCommand) Execute(input values.DataInput) (error, values.DataResult) {
+func (p *GetPeopleCommand) Execute(input values.RequestData) (error, values.ResponseData) {
 
 	context := input
 
 	fmt.Println("COMMAND", context)
 
 	//value, ok := params.Args.(GetPeopleParam)
-	var dataResult values.DataResult
+	var dataResult values.ResponseData
 	err, data := p.Repository.GetPeople(p.params)
 
 	if err != nil {
