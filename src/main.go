@@ -31,7 +31,7 @@ func main() {
 	server.Binder = &CustomBinder{}
 	server.Validator = &CustomValidator{validator: validator.New()}
 
-	server.Use(mid.Logger())
+	// server.Use(mid.Logger())
 	server.Use(mid.Recover())
 
 	routers.BuildRouters(server)

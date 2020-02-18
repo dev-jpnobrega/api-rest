@@ -38,6 +38,10 @@ func onSuccess(context echo.Context, r value.ResponseData) error {
 	return context.JSONPretty(http.StatusOK, r, "  ")
 }
 
+func onFaliure(context echo.Context, r value.ResponseError) error {
+	return context.JSONPretty(r.StatusCode, r, "  ")
+}
+
 // Handler ...
 type Handler struct{}
 
@@ -54,7 +58,11 @@ func (h *Handler) Handle(context echo.Context, c interfaces.ICommand) error {
 		return onUnprocessableEntity(context, err)
 	}
 
-	_, rs := c.Execute(*model)
+	rs, errC := c.Execute(*model)
+
+	if errC != nil {
+		return onFaliure(context, *errC)
+	}
 
 	return onSuccess(context, rs)
 }

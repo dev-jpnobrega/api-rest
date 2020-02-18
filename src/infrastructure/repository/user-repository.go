@@ -2,20 +2,25 @@ package repository
 
 import (
 	"fmt"
+
+	values "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
 	entity "github.com/dev-jpnobrega/api-rest/src/domain/entity"
 )
 
 // UserRepository - Implementation (ref IUserRepository)
 type UserRepository struct {
-	model entity.User
+	DB map[string]*entity.User
 }
 
 // Login - User login in APP
-func (p *UserRepository) Login(email string, pass string) (error, entity.User) {
+func (p *UserRepository) Login(email string, pass string) (user *entity.User, err *values.ResponseError) {
 	fmt.Println("repository:", email, pass)
 
-	return nil, entity.User{
-		Name:  "João Paulo",
-		Email: "devjpnobrega@github.com",
+	user = p.DB[email]
+
+	if user == nil {
+		err = err.New("user.not.found", 2, 422)
 	}
+
+	return
 }

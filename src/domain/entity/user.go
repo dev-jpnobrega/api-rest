@@ -4,7 +4,6 @@ import "strings"
 
 // User representation persona
 type User struct {
-	ID    string
 	Name  string
 	Email string
 }
