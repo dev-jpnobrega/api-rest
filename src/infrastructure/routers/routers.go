@@ -1,8 +1,8 @@
-package routers
+package infrastructure
 
 import (
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
-	"github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
+	factory "github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
 	handler "github.com/dev-jpnobrega/api-rest/src/infrastructure/http"
 	echo "github.com/labstack/echo/v4"
 )

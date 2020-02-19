@@ -1,8 +1,6 @@
-package repository
+package infrastructure
 
 import (
-	"fmt"
-
 	values "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
 	entity "github.com/dev-jpnobrega/api-rest/src/domain/entity"
 )
@@ -14,8 +12,6 @@ type UserRepository struct {
 
 // Login - User login in APP
 func (p *UserRepository) Login(email string, pass string) (user *entity.User, err *values.ResponseError) {
-	fmt.Println("repository:", email, pass)
-
 	user = p.DB[email]
 
 	if user == nil {

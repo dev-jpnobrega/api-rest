@@ -1,4 +1,4 @@
-package factory
+package infrastructure
 
 import (
 	command "github.com/dev-jpnobrega/api-rest/src/domain/command"

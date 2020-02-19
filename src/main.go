@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
+	routers "github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
 	"github.com/go-playground/validator"
 	echo "github.com/labstack/echo/v4"
 	mid "github.com/labstack/echo/v4/middleware"
