@@ -7,7 +7,7 @@ import (
 	echo "github.com/labstack/echo/v4"
 )
 
-func adapter(command interfaces.ICommand, h handler.IHandler) func(c echo.Context) error {
+func Adapter(command interfaces.ICommand, h handler.IHandler) func(c echo.Context) error {
 	return func(c echo.Context) error {
 		return h.Handle(c, command)
 	}
@@ -19,7 +19,7 @@ func BuildRouters(server *echo.Echo) {
 
 	server.GET(
 		"/v1/people",
-		adapter(
+		Adapter(
 			factory.GetPeopleFactory(),
 			handler.NewHandler(),
 		),
@@ -27,7 +27,7 @@ func BuildRouters(server *echo.Echo) {
 
 	server.POST(
 		"/v1/login",
-		adapter(
+		Adapter(
 			factory.UserLoginFactory(),
 			handler.NewHandler(),
 		),

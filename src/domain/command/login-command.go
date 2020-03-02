@@ -1,6 +1,8 @@
 package domain
 
 import (
+	"fmt"
+
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
 	values "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
 )
@@ -16,6 +18,8 @@ func (l *LoginCommand) GetModelValidate() interface{} {
 
 func (l *LoginCommand) Execute(input values.RequestData) (dataResult values.ResponseData, err *values.ResponseError) {
 	args := input.Args.(*values.InputLogin)
+
+	fmt.Println("args", args)
 
 	user, err := l.Repository.Login(args.Email, args.Pass)
 

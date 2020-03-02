@@ -9,26 +9,13 @@ import (
 	echo "github.com/labstack/echo/v4"
 )
 
-type ErrorModel struct {
-	Code    int
-	Message string
-}
-
-type ResponseError struct {
-	StatusCode int
-	Errors     []ErrorModel
-}
-
 func onUnprocessableEntity(context echo.Context, err error) error {
-	r := ResponseError{}
+	r := value.ResponseError{}
 
 	r.StatusCode = http.StatusUnprocessableEntity
 
 	for _, e := range err.(validator.ValidationErrors) {
-		r.Errors = append(r.Errors, ErrorModel{
-			Code:    2,
-			Message: e.Field() + ".invalid",
-		})
+		r.Append(2, e.Field()+".invalid")
 	}
 
 	return context.JSONPretty(http.StatusUnprocessableEntity, r, " ")
