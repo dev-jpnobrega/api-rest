@@ -1,13 +1,13 @@
-package routers
+package infrastructure
 
 import (
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
-	"github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
+	factory "github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
 	handler "github.com/dev-jpnobrega/api-rest/src/infrastructure/http"
 	echo "github.com/labstack/echo/v4"
 )
 
-func adapter(command interfaces.ICommand, h handler.IHandler) func(c echo.Context) error {
+func Adapter(command interfaces.ICommand, h handler.IHandler) func(c echo.Context) error {
 	return func(c echo.Context) error {
 		return h.Handle(c, command)
 	}
@@ -15,10 +15,20 @@ func adapter(command interfaces.ICommand, h handler.IHandler) func(c echo.Contex
 
 // BuildRouters create router APP
 func BuildRouters(server *echo.Echo) {
+	// routeGroup := server.Group("/v1")
+
 	server.GET(
 		"/v1/people",
-		adapter(
+		Adapter(
 			factory.GetPeopleFactory(),
+			handler.NewHandler(),
+		),
+	)
+
+	server.POST(
+		"/v1/login",
+		Adapter(
+			factory.UserLoginFactory(),
 			handler.NewHandler(),
 		),
 	)

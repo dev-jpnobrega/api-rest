@@ -1,28 +1,57 @@
 package infrastructure
 
 import (
-	"fmt"
+	"net/http"
+
 	interfaces "github.com/dev-jpnobrega/api-rest/src/domain/contract/interface"
 	value "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
+	"github.com/go-playground/validator"
 	echo "github.com/labstack/echo/v4"
-	"net/http"
 )
+
+func onUnprocessableEntity(context echo.Context, err error) error {
+	r := value.ResponseError{}
+
+	r.StatusCode = http.StatusUnprocessableEntity
+
+	for _, e := range err.(validator.ValidationErrors) {
+		r.Append(2, e.Field()+".invalid")
+	}
+
+	return context.JSONPretty(http.StatusUnprocessableEntity, r, " ")
+}
+
+func onSuccess(context echo.Context, r value.ResponseData) error {
+	return context.JSONPretty(http.StatusOK, r, "  ")
+}
+
+func onFaliure(context echo.Context, r value.ResponseError) error {
+	return context.JSONPretty(r.StatusCode, r, "  ")
+}
 
 // Handler ...
 type Handler struct{}
 
 // Handle ...
 func (h *Handler) Handle(context echo.Context, c interfaces.ICommand) error {
-	var model value.DataInput
-	model.Args = context.QueryParams()
-	// model.Authorization = r.Header.Get("Authorization")
-	// model.XAppToken = r.Header.Get("x-app-token")
+	model := new(value.RequestData)
+	model.Args = c.GetModelValidate()
 
-	err, rs := c.Execute(model)
+	if err := context.Bind(&model.Args); err != nil {
+		return onUnprocessableEntity(context, err)
+	}
 
-	fmt.Println("Handler[result]", err, rs)
+	if err := context.Validate(model.Args); err != nil {
+		return onUnprocessableEntity(context, err)
+	}
 
-	return context.JSON(http.StatusOK, rs)
+	rs, errC := c.Execute(*model)
+
+	if errC != nil {
+		return onFaliure(context, *errC)
+	}
+
+	return onSuccess(context, rs)
 }
 
 // NewHandler ...

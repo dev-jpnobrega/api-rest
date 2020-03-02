@@ -1,7 +1,8 @@
-package repository
+package infrastructure
 
 import (
 	"fmt"
+
 	command "github.com/dev-jpnobrega/api-rest/src/domain/command"
 	entity "github.com/dev-jpnobrega/api-rest/src/domain/entity"
 )

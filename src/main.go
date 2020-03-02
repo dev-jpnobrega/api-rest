@@ -1,16 +1,12 @@
 package main
 
 import (
-	"github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
-	mid "github.com/labstack/echo/v4/middleware"
-	echo "github.com/labstack/echo/v4"
+	http "github.com/dev-jpnobrega/api-rest/src/infrastructure/helper"
+	routers "github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
 )
 
 func main() {
-	server := echo.New()
-
-	server.Use(mid.Logger())
-	server.Use(mid.Recover())
+	server := http.CreateEchoServer()
 
 	routers.BuildRouters(server)
 
