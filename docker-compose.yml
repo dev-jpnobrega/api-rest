@@ -10,19 +10,19 @@ services:
     ports:
       - "8080:8080"
     restart: unless-stopped
-    # depends_on: 
-    #  - redis
+    depends_on: 
+     - postgres
     environment:
       REDIS_URL: redis:6379    
     networks:
       - backend
 
-  # Redis Service   
-  # redis:
-  #  image: "redis:alpine"
-  #  restart: unless-stopped
-  #  networks:
-  #    - backend
+  # Postgres Service   
+  postgres:
+    image: "postgres:alpine"
+    restart: unless-stopped
+    networks:
+      - backend
 
 networks:
   backend:    

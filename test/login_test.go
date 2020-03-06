@@ -9,11 +9,17 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 
+	DB "github.com/dev-jpnobrega/api-rest/src/db"
 	factory "github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
 	helper "github.com/dev-jpnobrega/api-rest/src/infrastructure/helper"
 	handler "github.com/dev-jpnobrega/api-rest/src/infrastructure/http"
 	routers "github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
 )
+
+func init() {
+	database := &DB.DB{}
+	database.Connect("postgres", "postgres://postgres:postgres@localhost/profile?sslmode=disable")
+}
 
 func TestLoginInvalidArgs(t *testing.T) {
 	e := helper.CreateEchoServer()
