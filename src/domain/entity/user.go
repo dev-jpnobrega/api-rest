@@ -1,11 +1,20 @@
 package domain
 
-import "strings"
+import (
+	"strings"
+	"time"
+
+	"github.com/google/uuid"
+)
 
 // User representation persona
 type User struct {
-	Name  string
-	Email string
+	ID        uuid.UUID
+	Name      string
+	Email     string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time
 }
 
 // IsValid check User is valid
