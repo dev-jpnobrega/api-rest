@@ -6,19 +6,47 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 
-	DB "github.com/dev-jpnobrega/api-rest/src/db"
-	factory "github.com/dev-jpnobrega/api-rest/src/infrastructure/factory"
+	command "github.com/dev-jpnobrega/api-rest/src/domain/command"
+	values "github.com/dev-jpnobrega/api-rest/src/domain/contract/value"
+	entity "github.com/dev-jpnobrega/api-rest/src/domain/entity"
 	helper "github.com/dev-jpnobrega/api-rest/src/infrastructure/helper"
 	handler "github.com/dev-jpnobrega/api-rest/src/infrastructure/http"
 	routers "github.com/dev-jpnobrega/api-rest/src/infrastructure/routers"
 )
 
+var usersFaker []*entity.User
+
+type UserRepositoryFaker struct{}
+
+// Login - User login in APP
+func (p *UserRepositoryFaker) Login(email string, pass string) (*entity.User, *values.ResponseError) {
+	user := &entity.User{}
+
+	for _, u := range usersFaker {
+		if email == u.Email {
+			user = u
+		}
+	}
+
+	return user, nil
+}
+
 func init() {
-	database := &DB.DB{}
-	database.Connect("postgres", "postgres://postgres:postgres@localhost/profile?sslmode=disable")
+	usersFaker = append(usersFaker, &entity.User{
+		ID:    uuid.New(),
+		Name:  "JP",
+		Email: "dev@dev.com.br",
+	})
+
+	usersFaker = append(usersFaker, &entity.User{
+		ID:    uuid.New(),
+		Name:  "ED",
+		Email: "dev@ed.con.br",
+	})
 }
 
 func TestLoginInvalidArgs(t *testing.T) {
@@ -30,8 +58,12 @@ func TestLoginInvalidArgs(t *testing.T) {
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
+	command := &command.LoginCommand{
+		Repository: &UserRepositoryFaker{},
+	}
+
 	h := routers.Adapter(
-		factory.UserLoginFactory(),
+		command,
 		handler.NewHandler(),
 	)
 
@@ -68,8 +100,12 @@ func TestLoginOk(t *testing.T) {
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
 
+	command := &command.LoginCommand{
+		Repository: &UserRepositoryFaker{},
+	}
+
 	h := routers.Adapter(
-		factory.UserLoginFactory(),
+		command,
 		handler.NewHandler(),
 	)
 

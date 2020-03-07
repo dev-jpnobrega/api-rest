@@ -8,7 +8,7 @@ import (
 
 // UserRepository - Implementation (ref IUserRepository)
 type UserRepository struct {
-	DB infrastructure.IDB
+	Database infrastructure.IDB
 }
 
 // Login - User login in APP
@@ -16,7 +16,7 @@ func (p *UserRepository) Login(email string, pass string) (*entity.User, *values
 	user := &entity.User{}
 	err := &values.ResponseError{}
 
-	p.DB.GetModel(&entity.User{}).Where("email = ?", email).First(&user)
+	p.Database.GetModel(&entity.User{}).Where("email = ?", email).First(&user)
 
 	if user == nil {
 		return nil, err.New("user.not.found", 2, 422)
