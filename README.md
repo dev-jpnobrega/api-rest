@@ -4,11 +4,20 @@
 
 > The implementation using [ECHO web framework](https://echo.labstack.com/)
 
+## Install "GO"
+
+- For MAC: [go/MAC](https://dl.google.com/go/go1.14.darwin-amd64.pkg)
+
+- For Windows: [go/Windows](https://dl.google.com/go/go1.14.windows-amd64.msi)
+
+- For Linux: [go/Windows](https://dl.google.com/go/go1.14.linux-amd64.tar.gz)
+
+
 ## Packages structure
 
 - Package Domain
 
-  > The domain package is responsible by bussiness rules. The Domain decouple logic bussiness rules of the infrastructure
+  > The domain package is responsible by business rules. The Domain decouple logic business rules of the infrastructure
 
   **Code structure**
 
@@ -31,3 +40,5 @@
   |  /http       |                                |
   |  /repository |                                |
   |  /service    |                                |
+
+
