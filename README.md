@@ -10,7 +10,33 @@
 
 - For Windows: [go/Windows](https://dl.google.com/go/go1.14.windows-amd64.msi)
 
-- For Linux: [go/Windows](https://dl.google.com/go/go1.14.linux-amd64.tar.gz)
+- For Linux: [go/Linux](https://dl.google.com/go/go1.14.linux-amd64.tar.gz)
+
+## How do I use
+
+- Clone repository
+
+- Install modules and dependencies.
+  Type in the terminal:
+```go
+ go mod download
+```
+
+
+Go to the container folder you want to use.
+Change envs, if necessary.
+
+Example
+```cmd
+  cd ./redis
+```
+
+After, build your containers
+```cmd
+  docker-compose up
+```
+
+
 
 
 ## Packages structure

@@ -13,7 +13,11 @@ services:
     depends_on: 
      - postgres
     environment:
-      REDIS_URL: redis:6379    
+      DATABASE_NAME: profile
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres   
     networks:
       - backend
 
@@ -25,4 +29,4 @@ services:
       - backend
 
 networks:
-  backend:    
+  backend:
