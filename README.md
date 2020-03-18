@@ -8,7 +8,7 @@
 
 - Package Domain
 
-  > The domain package is responsible by bussiness rules. The Domain decouple logic bussiness rules of the infrastructure
+  > The domain package is responsible by business rules. The Domain decouple logic business rules of the infrastructure
 
   **Code structure**
 
