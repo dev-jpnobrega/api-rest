@@ -16,11 +16,20 @@
 
 - Clone repository
 
-- Install modules and dependencies.
+- Install modules and dependencies.<br/>
   Type in the terminal:
+
 ```go
  go mod download
 ```
+
+- Run app.<br/>
+  Type in the terminal:
+
+```go
+ go run src/main.go
+```
+
 
 
 Go to the container folder you want to use.
