@@ -31,7 +31,7 @@
 - Application Debugging for VSCODE.<br/>
   Install extension [golang](ms-vscode.go) for VSCODE.
   In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/feature/add-readme-infos/.vscode/launch.json) set your envs.
-  Click F5 and add your breakpoints
+  Click F5 and add your breakpoints.
 
 
 Go to the container folder you want to use.
