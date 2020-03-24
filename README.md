@@ -16,20 +16,22 @@
 
 - Clone repository
 
-- Install modules and dependencies.<br/>
-  Type in the terminal:
+- Install modules and dependencies.
 
 ```go
  go mod download
 ```
 
-- Run app.<br/>
-  Type in the terminal:
+- Run app.
 
 ```go
  go run src/main.go
 ```
 
+- Application Debugging for VSCODE.<br/>
+  Install extension [golang](ms-vscode.go) for VSCODE.
+  In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/feature/add-readme-infos/.vscode/launch.json) set your envs
+  Click F5 and add your breakpoints
 
 
 Go to the container folder you want to use.

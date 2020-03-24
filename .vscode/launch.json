@@ -13,7 +13,13 @@
         "port": 8080,
         "host": "127.0.0.1",
         "program": "${workspaceRoot}/src/main.go",
-        "env": {},
+        "env": {
+          "DATABASE_NAME": "profile",
+          "DATABASE_HOST": "profile",
+          "DATABASE_PORT": 5432,
+          "DATABASE_USER": "postgres",
+          "DATABASE_PASSWORD": "postgres"
+        },
         "args": [],
         "showLog": false
     }
