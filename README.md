@@ -30,52 +30,34 @@
 
 - Application Debugging for VSCODE.<br/>
   Install extension [golang](ms-vscode.go) for VSCODE.
-  In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/feature/add-readme-infos/.vscode/launch.json) set your envs.<br/>
+  In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/master/.vscode/launch.json) set your envs.<br/>
   Click F5 and add your breakpoints.
 
 
-Go to the container folder you want to use.
-Change envs, if necessary.
+## Contributing
 
-Example
-```cmd
-  cd ./redis
-```
+If you've ever wanted to contribute to open source, and a great cause, now is your chance!
 
-After, build your containers
-```cmd
-  docker-compose up
-```
+See the [contributing docs](https://github.com/dev-jpnobrega/api-rest/blob/master/CONTRIBUTING.md) for more information
 
+## Contributors ✨
 
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/dev-jpnobrega"><img src="https://avatars1.githubusercontent.com/u/28389807?s=400&u=2c152fc946efc96badce0cfc743ebcb2585b4b3f&v=4" width="100px;" alt=""/><br /><sub><b>JP. Nobrega</b></sub></a><br /><a href="https://github.com/dev-jpnobrega/docker/issues" title="Answering Questions">💬</a> <a href="https://github.com/dev-jpnobrega/api-rest/master#how-do-i-use" title="Documentation">📖</a> <a href="https://github.com/dev-jpnobrega/api-rest/pulls" title="Reviewed Pull Requests">👀</a> <a href="#talk-kentcdodds" title="Talks">📢</a></td>
+  </tr>
+</table>
 
-## Packages structure
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-- Package Domain
+## License
+[MIT](https://github.com/all-contributors/all-contributors/blob/master/LICENSE)
 
-  > The domain package is responsible by business rules. The Domain decouple logic business rules of the infrastructure
-
-  **Code structure**
-
-  |   Folder   |        Responsibility          | 
-  |------------|--------------------------------|
-  |  /command  |                                |
-  |  /entity   |                                |
-  |  /contract |                                |
-  |  /service  |                                |
-    
-- Package Infrastructure
-
-  > The infrastructure package stores
-
-  **Code structure**
-
-  |   Folder     |        Responsibility          | 
-  |--------------|--------------------------------|
-  |  /factory    |                                |
-  |  /http       |                                |
-  |  /repository |                                |
-  |  /service    |                                |
 
 
