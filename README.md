@@ -27,10 +27,12 @@
     ```go
     go run src/main.go
     ```
+
   - Or application Debugging for VSCODE.<br/>
     Install extension [golang](ms-vscode.go) for VSCODE.
     In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/master/.vscode/launch.json) set your envs.<br/>
     Click F5 and add your breakpoints.
+
   - Or run in docker
      ```go
     docker-compose up
