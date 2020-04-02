@@ -23,15 +23,19 @@
 ```
 
 - Run app.
-
-```go
- go run src/main.go
-```
-
-- Application Debugging for VSCODE.<br/>
-  Install extension [golang](ms-vscode.go) for VSCODE.
-  In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/master/.vscode/launch.json) set your envs.<br/>
-  Click F5 and add your breakpoints.
+  - In terminal
+    ```go
+    go run src/main.go
+    ```
+  - Or application Debugging for VSCODE.<br/>
+    Install extension [golang](ms-vscode.go) for VSCODE.
+    In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/master/.vscode/launch.json) set your envs.<br/>
+    Click F5 and add your breakpoints.
+  - Or run in docker
+     ```go
+    docker-compose up
+    ```
+  
 
 
 ## Contributing
@@ -48,7 +52,7 @@ See the [contributing docs](https://github.com/dev-jpnobrega/api-rest/blob/maste
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/dev-jpnobrega"><img src="https://avatars1.githubusercontent.com/u/28389807?s=400&u=2c152fc946efc96badce0cfc743ebcb2585b4b3f&v=4" width="100px;" alt=""/><br /><sub><b>JP. Nobrega</b></sub></a><br /><a href="https://github.com/dev-jpnobrega/docker/issues" title="Answering Questions">💬</a> <a href="https://github.com/dev-jpnobrega/api-rest/master#how-do-i-use" title="Documentation">📖</a> <a href="https://github.com/dev-jpnobrega/api-rest/pulls" title="Reviewed Pull Requests">👀</a> <a href="#talk-kentcdodds" title="Talks">📢</a></td>
+    <td align="center"><a href="https://github.com/dev-jpnobrega"><img src="https://avatars1.githubusercontent.com/u/28389807?s=400&u=2c152fc946efc96badce0cfc743ebcb2585b4b3f&v=4" width="100px;" alt=""/><br /><sub><b>JP. Nobrega</b></sub></a><br /><a href="https://github.com/dev-jpnobrega/api-rest/issues" title="Answering Questions">💬</a> <a href="https://github.com/dev-jpnobrega/api-rest/master#how-do-i-use" title="Documentation">📖</a> <a href="https://github.com/dev-jpnobrega/api-rest/pulls" title="Reviewed Pull Requests">👀</a> <a href="#talk-kentcdodds" title="Talks">📢</a></td>
   </tr>
 </table>
 
