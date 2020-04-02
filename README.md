@@ -35,7 +35,7 @@
 
   - Or run in docker.<br/>
     Docker compose will create postgres db and its application.
-     ```go
+     ```cmd
     docker-compose up
     ```
   
