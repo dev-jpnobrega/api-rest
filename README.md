@@ -33,7 +33,8 @@
     In [launch.json](https://github.com/dev-jpnobrega/api-rest/blob/master/.vscode/launch.json) set your envs.<br/>
     Click F5 and add your breakpoints.
 
-  - Or run in docker
+  - Or run in docker.
+    Docker compose will create postgres db and its application.
      ```go
     docker-compose up
     ```
