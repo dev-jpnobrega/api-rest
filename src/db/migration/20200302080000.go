@@ -1,37 +1,25 @@
-package main
+package migration
 
 import (
-	"time"
-
-	"github.com/google/uuid"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"gopkg.in/gormigrate.v1"
+	g "gopkg.in/gormigrate.v1"
 )
 
-// BaseModel define
-type BaseModel struct {
-	ID        uuid.UUID `gorm:"type:uuid;primary_key"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt *time.Time
-}
-
 // MigraCreateTableUser - Create table User
-func MigraCreateTableUser() (m *gormigrate.Migration) {
-	m.ID = "20200302080000"
-	m.Migrate = func(tx *gorm.DB) error {
-		type User struct {
-			BaseModel
-			Name  string
-			Email string
-		}
+func MigraCreateTableUser() g.Migration {
+	return g.Migration{
+		ID: "20200302080000",
+		Rollback: func(tx *gorm.DB) error {
+			return tx.DropTable("user").Error
+		},
+		Migrate: func(tx *gorm.DB) error {
+			type User struct {
+				BaseModel
+				Name  string
+				Email string
+			}
 
-		return tx.AutoMigrate(&User{}).Error
+			return tx.AutoMigrate(&User{}).Error
+		},
 	}
-	m.Rollback = func(tx *gorm.DB) error {
-		return tx.DropTable("user").Error
-	}
-
-	return
 }

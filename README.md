@@ -16,13 +16,25 @@
 
 - Clone repository
 
-- Install modules and dependencies.
-
 ```go
  go mod download
 ```
 
-- Run app.
+- Migration system<br/>
+  Migrations will executation with [gormigrate](gopkg.in/gormigrate.v1).<br/>
+  [gormigrate](gopkg.in/gormigrate.v1) working together [gorm](gopkg.in/gorm.v1) for execute migrations
+
+  - Execute initial migrations
+    ```go
+    go run run-migrations.go
+    ```
+
+  - Create a new migration<br/>
+    You'll add a new file in folder /migration. File name will migration id.
+    
+
+
+- Run app
   - In terminal
     ```go
     go run src/main.go

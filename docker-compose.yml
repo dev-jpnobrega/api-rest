@@ -13,7 +13,8 @@ services:
     depends_on: 
      - postgres
     environment:
-      DATABASE_NAME: profile
+      DATABASE_NAME: workout
+      DATABASE_SCHEMA: dbuser
       DATABASE_HOST: localhost
       DATABASE_PORT: 5432
       DATABASE_USER: postgres
